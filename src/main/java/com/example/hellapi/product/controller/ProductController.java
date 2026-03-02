@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -50,7 +49,7 @@ public class ProductController {
 	@PreAuthorize("hasRole('SYSTEM_ADMIN') or (hasAuthority('PRODUCT_READ') and (!#includeDeleted or hasAuthority('PRODUCT_LIST_DELETED')))")
 	public ApiResponse<PageResponse<ProductResponse>> getAll(
 		@PageableDefault(size = 20, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-		@P("includeDeleted") @RequestParam(defaultValue = "false") boolean includeDeleted) {
+		@RequestParam(defaultValue = "false") boolean includeDeleted) {
 		Page<ProductResponse> page = productService.getAll(pageable, includeDeleted).map(ProductResponse::from);
 		return ApiResponse.ok(PageResponse.from(page));
 	}
@@ -66,7 +65,7 @@ public class ProductController {
 	@PreAuthorize("hasRole('SYSTEM_ADMIN') or (hasAuthority('PRODUCT_READ') and (!#includeDeleted or hasAuthority('PRODUCT_LIST_DELETED')))")
 	public ApiResponse<ProductResponse> getById(
 		@PathVariable Long id,
-		@P("includeDeleted") @RequestParam(defaultValue = "false") boolean includeDeleted) {
+		@RequestParam(defaultValue = "false") boolean includeDeleted) {
 		return ApiResponse.ok(ProductResponse.from(productService.getById(id, includeDeleted)));
 	}
 
