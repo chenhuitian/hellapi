@@ -1,0 +1,11 @@
+# Production profile: no SQL logging, externalized DB config
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://host.docker.internal:49154/hellapi?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:mysqlpw}
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
