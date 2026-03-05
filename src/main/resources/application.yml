@@ -26,6 +26,13 @@ spring:
     basename: messages
     encoding: UTF-8
 
+# Moomoo OpenAPI - enable and configure when OpenD is running
+moomoo:
+  enabled: false
+  host: 127.0.0.1
+  port: 11111
+  paper-trading: true
+
 logging:
   level:
     org.hibernate.SQL: DEBUG

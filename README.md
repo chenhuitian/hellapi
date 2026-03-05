@@ -6,6 +6,7 @@ Spring Boot REST API for product management and role/permission control.
 
 - Product CRUD with soft delete and restore.
 - Trade CRUD with soft delete and restore.
+- Singapore stock orders with Moomoo OpenAPI integration (buy/sell).
 - Role management with permission assignment.
 - HTTP Basic auth + method-level authorization.
 - Swagger UI documentation.
@@ -72,10 +73,34 @@ HTTP Basic authentication is enabled for `/api/**`.
 - `DELETE /api/trades/{id}`
 - `PUT /api/trades/{id}/restore`
 
+- `POST /api/singapore-stocks/orders` - Place buy/sell order (Singapore stocks via Moomoo)
+- `GET /api/singapore-stocks/orders`
+- `GET /api/singapore-stocks/orders/{id}`
+- `DELETE /api/singapore-stocks/orders/{id}`
+- `GET /api/singapore-stocks/status` - Check Moomoo OpenAPI availability
+
 - `POST /api/roles`
 - `GET /api/roles`
 - `GET /api/roles/{id}`
 - `PUT /api/roles/{id}/permissions`
+
+## Singapore Stock Trading (Moomoo OpenAPI)
+
+To trade Singapore stocks (buy/sell), integrate with [Moomoo OpenAPI](https://openapi.moomoo.com/moomoo-api-doc/):
+
+1. Download and run [OpenD](https://openapi.moomoo.com/moomoo-api-doc/en/quick/opend-base.html) - the gateway for Moomoo API
+2. Login with your Moomoo SG account in OpenD
+3. Set in `application.yml`:
+   ```yaml
+   moomoo:
+     enabled: true
+     host: 127.0.0.1
+     port: 11111
+     paper-trading: true   # false for live trading
+   ```
+4. Use symbols like `D05` (DBS), `O39` (OCBC) - they are sent as `SG.D05`, `SG.O39` to the API
+
+When `moomoo.enabled=false` (default), orders are stored locally but not submitted to Moomoo.
 
 ## Database
 

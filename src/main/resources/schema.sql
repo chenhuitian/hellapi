@@ -27,3 +27,18 @@ CREATE TABLE IF NOT EXISTS trades (
   deleted BOOLEAN NOT NULL DEFAULT FALSE,
   deleted_at TIMESTAMP NULL
 );
+
+CREATE TABLE IF NOT EXISTS singapore_stock_orders (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  symbol VARCHAR(32) NOT NULL,
+  side VARCHAR(8) NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(19, 4) NOT NULL,
+  order_type VARCHAR(16) NOT NULL,
+  status VARCHAR(32) NOT NULL,
+  external_order_id VARCHAR(64),
+  message VARCHAR(500),
+  deleted BOOLEAN NOT NULL DEFAULT FALSE,
+  deleted_at TIMESTAMP NULL,
+  created_at TIMESTAMP NOT NULL
+);

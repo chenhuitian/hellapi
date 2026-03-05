@@ -7,6 +7,7 @@ import com.example.hellapi.product.exception.ProductNotDeletedException;
 import com.example.hellapi.product.exception.ProductNotFoundException;
 import com.example.hellapi.trade.exception.TradeNotDeletedException;
 import com.example.hellapi.trade.exception.TradeNotFoundException;
+import com.example.hellapi.singaporestock.exception.SingaporeStockOrderNotFoundException;
 import com.example.hellapi.security.RoleNameExistsException;
 import com.example.hellapi.security.RoleNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -56,6 +57,12 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiResponse<Void>> handleTradeNotDeleted(TradeNotDeletedException ex, HttpServletRequest request) {
 		String message = resolveMessage(ErrorCode.TRADE_NOT_DELETED, new Object[] { ex.getId() }, ex.getMessage());
 		return buildError(HttpStatus.BAD_REQUEST, ErrorCode.TRADE_NOT_DELETED, message, request, null);
+	}
+
+	@ExceptionHandler(SingaporeStockOrderNotFoundException.class)
+	public ResponseEntity<ApiResponse<Void>> handleSingaporeStockOrderNotFound(SingaporeStockOrderNotFoundException ex, HttpServletRequest request) {
+		String message = resolveMessage(ErrorCode.SINGAPORE_STOCK_ORDER_NOT_FOUND, new Object[] { ex.getId() }, ex.getMessage());
+		return buildError(HttpStatus.NOT_FOUND, ErrorCode.SINGAPORE_STOCK_ORDER_NOT_FOUND, message, request, null);
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)

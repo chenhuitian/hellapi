@@ -24,3 +24,8 @@ INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_UPDATE' FRO
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_DELETE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_LIST_DELETED' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_RESTORE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'SINGAPORE_STOCK_READ' FROM roles WHERE name = 'USER' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'SINGAPORE_STOCK_TRADE' FROM roles WHERE name = 'USER' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'SINGAPORE_STOCK_READ' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'SINGAPORE_STOCK_TRADE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'SINGAPORE_STOCK_DELETE' FROM roles WHERE name = 'ADMIN' LIMIT 1;

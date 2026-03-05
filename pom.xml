@@ -98,6 +98,12 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.moomoo.openapi</groupId>
+			<artifactId>moomoo-api</artifactId>
+			<version>9.2.5208</version>
+		</dependency>
 	</dependencies>
 
 	<build>

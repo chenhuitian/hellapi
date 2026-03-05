@@ -5,6 +5,7 @@ public enum ErrorCode {
 	PRODUCT_NOT_DELETED("PRODUCT_NOT_DELETED", "Product is not deleted"),
 	TRADE_NOT_FOUND("TRADE_NOT_FOUND", "Trade not found"),
 	TRADE_NOT_DELETED("TRADE_NOT_DELETED", "Trade is not deleted"),
+	SINGAPORE_STOCK_ORDER_NOT_FOUND("SINGAPORE_STOCK_ORDER_NOT_FOUND", "Singapore stock order not found"),
 	VALIDATION_ERROR("VALIDATION_ERROR", "Validation failed"),
 	CONSTRAINT_VIOLATION("CONSTRAINT_VIOLATION", "Constraint violation"),
 	INVALID_BODY("INVALID_BODY", "Invalid request body"),
