@@ -17,7 +17,18 @@ Spring Boot REST API for product management and role/permission control.
 
 ## Quick Start
 
-1) Configure the database in `src/main/resources/application.yml`.
+1) Start MySQL (creates `hellapi` database automatically):
+
+   ```bash
+   docker compose up -d mysql
+   ```
+
+   Or if using an existing MySQL, create the database manually:
+
+   ```bash
+   mysql -h 127.0.0.1 -P 49154 -u root -pmysqlpw -e "CREATE DATABASE IF NOT EXISTS hellapi;"
+   ```
+
 2) Run the app:
 
 ```
@@ -27,7 +38,7 @@ Spring Boot REST API for product management and role/permission control.
 3) Open Swagger UI:
 
 ```
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8090/swagger-ui/index.html
 ```
 
 ## Default Accounts
@@ -57,12 +68,13 @@ HTTP Basic authentication is enabled for `/api/**`.
 - `GET /api/roles/{id}`
 - `PUT /api/roles/{id}/permissions`
 
-## Database Initialization
+## Database
 
-Schema and seed data are loaded from:
+The `hellapi` database must exist. Tables are created by Hibernate (`ddl-auto: update`). No schema or seed scripts are run.
 
-- `src/main/resources/schema.sql`
-- `src/main/resources/data.sql`
+```bash
+mysql -h 127.0.0.1 -P 49154 -u root -pmysqlpw -e "CREATE DATABASE IF NOT EXISTS hellapi;"
+```
 
 ## Tests
 

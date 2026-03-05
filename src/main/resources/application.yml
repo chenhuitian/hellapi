@@ -1,8 +1,11 @@
+server:
+  port: 8090
+
 spring:
   application:
     name: hellapi
   datasource:
-    url: jdbc:mysql://host.docker.internal:49153/hellapi?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://host.docker.internal:49154/hellapi?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: root
     password: mysqlpw
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -10,7 +13,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false
     properties:
       hibernate:
         format_sql: true
@@ -18,7 +21,7 @@ spring:
           time_zone: UTC
   sql:
     init:
-      mode: always
+      mode: never
   messages:
     basename: messages
     encoding: UTF-8

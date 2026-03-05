@@ -14,3 +14,4 @@ INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_UPDATE' F
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_DELETE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_LIST_DELETED' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_RESTORE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'ROLE_MANAGE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
