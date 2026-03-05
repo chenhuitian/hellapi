@@ -18,3 +18,12 @@ CREATE TABLE IF NOT EXISTS role_permissions (
   PRIMARY KEY (role_id, permission),
   FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS trades (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(19, 2) NOT NULL,
+  description VARCHAR(1000),
+  deleted BOOLEAN NOT NULL DEFAULT FALSE,
+  deleted_at TIMESTAMP NULL
+);

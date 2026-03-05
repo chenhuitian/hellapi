@@ -15,3 +15,12 @@ INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_DELETE' F
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_LIST_DELETED' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'PRODUCT_RESTORE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
 INSERT INTO role_permissions (role_id, permission) SELECT id, 'ROLE_MANAGE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_READ' FROM roles WHERE name = 'USER' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_CREATE' FROM roles WHERE name = 'USER' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_UPDATE' FROM roles WHERE name = 'USER' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_READ' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_CREATE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_UPDATE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_DELETE' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_LIST_DELETED' FROM roles WHERE name = 'ADMIN' LIMIT 1;
+INSERT INTO role_permissions (role_id, permission) SELECT id, 'TRADE_RESTORE' FROM roles WHERE name = 'ADMIN' LIMIT 1;

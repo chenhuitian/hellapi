@@ -5,6 +5,8 @@ import com.example.hellapi.common.api.ErrorCode;
 import java.util.Locale;
 import com.example.hellapi.product.exception.ProductNotDeletedException;
 import com.example.hellapi.product.exception.ProductNotFoundException;
+import com.example.hellapi.trade.exception.TradeNotDeletedException;
+import com.example.hellapi.trade.exception.TradeNotFoundException;
 import com.example.hellapi.security.RoleNameExistsException;
 import com.example.hellapi.security.RoleNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,6 +44,18 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiResponse<Void>> handleNotDeleted(ProductNotDeletedException ex, HttpServletRequest request) {
 		String message = resolveMessage(ErrorCode.PRODUCT_NOT_DELETED, new Object[] { ex.getId() }, ex.getMessage());
 		return buildError(HttpStatus.BAD_REQUEST, ErrorCode.PRODUCT_NOT_DELETED, message, request, null);
+	}
+
+	@ExceptionHandler(TradeNotFoundException.class)
+	public ResponseEntity<ApiResponse<Void>> handleTradeNotFound(TradeNotFoundException ex, HttpServletRequest request) {
+		String message = resolveMessage(ErrorCode.TRADE_NOT_FOUND, new Object[] { ex.getId() }, ex.getMessage());
+		return buildError(HttpStatus.NOT_FOUND, ErrorCode.TRADE_NOT_FOUND, message, request, null);
+	}
+
+	@ExceptionHandler(TradeNotDeletedException.class)
+	public ResponseEntity<ApiResponse<Void>> handleTradeNotDeleted(TradeNotDeletedException ex, HttpServletRequest request) {
+		String message = resolveMessage(ErrorCode.TRADE_NOT_DELETED, new Object[] { ex.getId() }, ex.getMessage());
+		return buildError(HttpStatus.BAD_REQUEST, ErrorCode.TRADE_NOT_DELETED, message, request, null);
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)

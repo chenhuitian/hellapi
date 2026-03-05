@@ -5,6 +5,7 @@ Spring Boot REST API for product management and role/permission control.
 ## Features
 
 - Product CRUD with soft delete and restore.
+- Trade CRUD with soft delete and restore.
 - Role management with permission assignment.
 - HTTP Basic auth + method-level authorization.
 - Swagger UI documentation.
@@ -62,6 +63,14 @@ HTTP Basic authentication is enabled for `/api/**`.
 - `PUT /api/products/{id}`
 - `DELETE /api/products/{id}`
 - `PUT /api/products/{id}/restore`
+
+- `POST /api/trades`
+- `GET /api/trades`
+- `GET /api/trades/{id}`
+- `GET /api/trades/deleted`
+- `PUT /api/trades/{id}`
+- `DELETE /api/trades/{id}`
+- `PUT /api/trades/{id}/restore`
 
 - `POST /api/roles`
 - `GET /api/roles`

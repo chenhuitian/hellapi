@@ -62,6 +62,12 @@ class SecurityIntegrationTest {
 	}
 
 	@Test
+	void apiTrades_withValidAuth_returns200() throws Exception {
+		mockMvc.perform(get("/api/trades").with(httpBasic("admin", "admin123")))
+			.andExpect(status().isOk());
+	}
+
+	@Test
 	void swaggerUi_withoutAuth_returns200() throws Exception {
 		mockMvc.perform(get("/swagger-ui/index.html"))
 			.andExpect(status().isOk());
