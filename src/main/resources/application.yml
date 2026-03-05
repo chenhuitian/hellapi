@@ -25,3 +25,8 @@ spring:
   messages:
     basename: messages
     encoding: UTF-8
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
