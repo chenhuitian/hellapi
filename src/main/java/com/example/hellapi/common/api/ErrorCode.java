@@ -3,6 +3,8 @@ package com.example.hellapi.common.api;
 public enum ErrorCode {
 	PRODUCT_NOT_FOUND("PRODUCT_NOT_FOUND", "Product not found"),
 	PRODUCT_NOT_DELETED("PRODUCT_NOT_DELETED", "Product is not deleted"),
+	JOB_NOT_FOUND("JOB_NOT_FOUND", "Job not found"),
+	JOB_NOT_DELETED("JOB_NOT_DELETED", "Job is not deleted"),
 	TRADE_NOT_FOUND("TRADE_NOT_FOUND", "Trade not found"),
 	TRADE_NOT_DELETED("TRADE_NOT_DELETED", "Trade is not deleted"),
 	SINGAPORE_STOCK_ORDER_NOT_FOUND("SINGAPORE_STOCK_ORDER_NOT_FOUND", "Singapore stock order not found"),
