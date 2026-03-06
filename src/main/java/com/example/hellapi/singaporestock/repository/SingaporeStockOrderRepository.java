@@ -1,6 +1,7 @@
 package com.example.hellapi.singaporestock.repository;
 
 import com.example.hellapi.singaporestock.entity.SingaporeStockOrder;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,4 +29,9 @@ public interface SingaporeStockOrderRepository extends JpaRepository<SingaporeSt
 
 	@Query(value = "SELECT * FROM singapore_stock_orders WHERE id = :id", nativeQuery = true)
 	Optional<SingaporeStockOrder> findByIdIncludeDeleted(@Param("id") Long id);
+
+	/** BUY orders with status SUBMITTED or FILLED that have not been auto-sold. */
+	@Query(value = "SELECT * FROM singapore_stock_orders WHERE side = 'BUY' AND status IN ('SUBMITTED', 'FILLED') AND auto_sold = false AND deleted = false",
+		nativeQuery = true)
+	List<SingaporeStockOrder> findBuyOrdersNotAutoSold();
 }

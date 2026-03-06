@@ -1,6 +1,7 @@
 package com.example.hellapi.singaporestock.moormoo;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,11 @@ public class NoOpMoormooStockClient implements MoormooStockClient {
 			.externalOrderId("LOCAL-" + System.currentTimeMillis())
 			.message("Order stored locally. Enable moomoo.enabled=true and run OpenD to submit to Moomoo.")
 			.build();
+	}
+
+	@Override
+	public Optional<BigDecimal> getQuote(String symbol) {
+		return Optional.empty();
 	}
 
 	@Override

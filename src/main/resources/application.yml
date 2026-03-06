@@ -33,6 +33,12 @@ moomoo:
   port: 11111
   paper-trading: true
 
+# Auto-sell schedule: when price >= bought + 10%, place SELL order
+schedule-trade:
+  enabled: false
+  interval-ms: 300000   # 5 minutes
+  auto-sell-threshold-percent: 10
+
 logging:
   level:
     org.hibernate.SQL: DEBUG

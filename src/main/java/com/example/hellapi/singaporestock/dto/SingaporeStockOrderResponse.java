@@ -23,6 +23,8 @@ public class SingaporeStockOrderResponse {
 	private SingaporeStockOrder.OrderStatus status;
 	private String externalOrderId;
 	private String message;
+	private boolean autoSold;
+	private String autoSellOrderId;
 	private Instant createdAt;
 
 	public static SingaporeStockOrderResponse from(SingaporeStockOrder order) {
@@ -36,6 +38,8 @@ public class SingaporeStockOrderResponse {
 			.status(order.getStatus())
 			.externalOrderId(order.getExternalOrderId())
 			.message(order.getMessage())
+			.autoSold(order.isAutoSold())
+			.autoSellOrderId(order.getAutoSellOrderId())
 			.createdAt(order.getCreatedAt())
 			.build();
 	}

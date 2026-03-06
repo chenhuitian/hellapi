@@ -60,6 +60,14 @@ public class SingaporeStockOrder {
 	@Column(length = 500)
 	private String message;
 
+	/** True when this BUY order was auto-sold by the schedule (price >= bought + 10%). */
+	@Column(name = "auto_sold", nullable = false)
+	private boolean autoSold;
+
+	/** External order ID of the SELL order created by auto-sell, if any. */
+	@Column(name = "auto_sell_order_id", length = 64)
+	private String autoSellOrderId;
+
 	@Column(nullable = false)
 	private boolean deleted;
 

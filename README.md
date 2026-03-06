@@ -102,6 +102,18 @@ To trade Singapore stocks (buy/sell), integrate with [Moomoo OpenAPI](https://op
 
 When `moomoo.enabled=false` (default), orders are stored locally but not submitted to Moomoo.
 
+## Auto-Sell Schedule (scheduleTrade)
+
+A scheduled job checks Singapore stock prices every 5 minutes and auto-sells when the current price is **10% or more** above the bought price.
+
+- **Package:** `com.example.hellapi.scheduletrade`
+- **Config:** Set `schedule-trade.enabled: true` in `application.yml`
+- **Logic:** For each BUY order (status SUBMITTED or FILLED) not yet auto-sold, fetches quote from Moomoo; if `currentPrice >= boughtPrice * 1.10`, places a MARKET SELL order
+- **Threshold:** Configurable via `schedule-trade.auto-sell-threshold-percent` (default: 10)
+- **Interval:** Configurable via `schedule-trade.interval-ms` (default: 300000 = 5 minutes)
+
+Requires `moomoo.enabled=true` for real-time quotes. When disabled, no quotes are available and no auto-sells occur.
+
 ## Database
 
 The `hellapi` database must exist. Tables are created by Hibernate (`ddl-auto: update`). No schema or seed scripts are run.

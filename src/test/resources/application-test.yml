@@ -1,6 +1,9 @@
 moomoo:
   enabled: false
 
+schedule-trade:
+  enabled: false
+
 spring:
   datasource:
     url: jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1

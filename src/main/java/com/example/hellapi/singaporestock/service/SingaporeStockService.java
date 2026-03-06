@@ -32,6 +32,7 @@ public class SingaporeStockService {
 			.price(request.getPrice())
 			.orderType(request.getOrderType())
 			.status(SingaporeStockOrder.OrderStatus.PENDING)
+			.autoSold(false)
 			.deleted(false)
 			.createdAt(Instant.now())
 			.build();
@@ -85,5 +86,27 @@ public class SingaporeStockService {
 
 	public boolean isMoormooAvailable() {
 		return moormooClient.isAvailable();
+	}
+
+	/**
+	 * Place a SELL order for an existing BUY position (used by auto-sell schedule).
+	 * Marks the buy order as auto-sold on success.
+	 */
+	@Transactional
+	public SingaporeStockOrder placeAutoSellOrder(SingaporeStockOrder buyOrder, java.math.BigDecimal currentPrice) {
+		PlaceOrderRequest sellRequest = PlaceOrderRequest.builder()
+			.symbol(buyOrder.getSymbol())
+			.side(SingaporeStockOrder.OrderSide.SELL)
+			.quantity(buyOrder.getQuantity())
+			.price(currentPrice)
+			.orderType(SingaporeStockOrder.OrderType.MARKET)
+			.build();
+		SingaporeStockOrder sellOrder = placeOrder(sellRequest);
+		if (sellOrder.getStatus() == SingaporeStockOrder.OrderStatus.SUBMITTED) {
+			buyOrder.setAutoSold(true);
+			buyOrder.setAutoSellOrderId(sellOrder.getExternalOrderId());
+			orderRepository.save(buyOrder);
+		}
+		return sellOrder;
 	}
 }

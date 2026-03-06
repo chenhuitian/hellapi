@@ -1,6 +1,7 @@
 package com.example.hellapi.singaporestock.moormoo;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,6 +55,18 @@ public class MoormooStockClientImpl implements MoormooStockClient {
 				.success(false)
 				.message("Moomoo API error: " + e.getMessage())
 				.build();
+		}
+	}
+
+	@Override
+	public Optional<BigDecimal> getQuote(String symbol) {
+		String sgSymbol = symbol.contains(".") ? symbol : "SG." + symbol;
+		try {
+			MoormooQuoteDelegate delegate = new MoormooQuoteDelegate(host, port);
+			return delegate.getLastPrice(sgSymbol);
+		} catch (Exception e) {
+			log.debug("Get quote failed for {}: {}", symbol, e.getMessage());
+			return Optional.empty();
 		}
 	}
 

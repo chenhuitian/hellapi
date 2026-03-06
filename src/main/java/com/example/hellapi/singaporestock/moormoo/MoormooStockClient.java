@@ -1,6 +1,7 @@
 package com.example.hellapi.singaporestock.moormoo;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 import lombok.Builder;
 import lombok.Value;
 
@@ -13,6 +14,11 @@ public interface MoormooStockClient {
 
 	PlaceOrderResult placeOrder(String symbol, boolean isBuy, int quantity, BigDecimal price,
 		boolean isLimitOrder);
+
+	/**
+	 * Get current last price for a symbol. Returns empty when unavailable (e.g. Moomoo disabled).
+	 */
+	Optional<BigDecimal> getQuote(String symbol);
 
 	boolean isAvailable();
 
